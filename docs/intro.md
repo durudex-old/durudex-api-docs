@@ -18,7 +18,7 @@ In case of incorrect requests or various server errors, an error will be returne
 }
 ```
 
-## Error codes
+## Error Codes
 
 Each of the status codes symbolizes the type of server error during the incoming request.
 
@@ -59,6 +59,23 @@ Authentication is performed using the `Authorization` HTTP header in the format 
 {
   "Authorization": "Bearer you-access-token"
 }
+```
+
+## Refresh Token
+
+This token is generated when a new session is added, and is used to update the lifetime of the `access` token.
+Please keep it in a safe place and do not show it to others, it may compromise the security of your account.
+
+**Refresh token consists of:**
+
+- `(27 chars)` - KSUID
+- `(1 char)` - Point.
+- `(48 chars)` - Payload.
+
+**Fake token**:
+
+```json
+"000000000000000000000000000.000000000000000000000000000000000000000000000000"
 ```
 
 ## Pagination
