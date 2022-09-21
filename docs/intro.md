@@ -68,15 +68,24 @@ Please keep it in a safe place and do not show it to others, it may compromise t
 
 **Refresh token consists of:**
 
-- `(27 chars)` - KSUID
+- `(27 chars)` - KSUID.
 - `(1 char)` - Point.
-- `(48 chars)` - Payload.
+- `(33 chars)` - Payload.
 
 **Fake token**:
 
 ```json
-"000000000000000000000000000.000000000000000000000000000000000000000000000000"
+"000000000000000000000000000.000000000000000000000000000000000"
 ```
+
+**Implementation:**
+
+- Go - [durudex/go-refresh](https://github.com/durudex/go-refresh)
+
+## Secret Key
+
+This key is generated and stored on the client and is used to ensure user security. It must be sha256 hashed to
+interact with the API.
 
 ## Pagination
 
