@@ -68,14 +68,18 @@ Please keep it in a safe place and do not show it to others, it may compromise t
 
 **Refresh token consists of:**
 
-- `(27 chars)` - KSUID.
-- `(1 char)` - Point.
-- `(33 chars)` - Payload.
+| Part | Length   | Type   | Value          |
+| :--: | :------: | :----: |:-------------: |
+| 1    | 27 chars | KSUID  | Session Id.    |
+| 2    | 27 chars | KSUID  | User Id.       |
+| 3    | 33 chars | String | Token payload. |
+
+> Note: Each part of the token is separated by a point.
 
 **Fake token**:
 
 ```json
-"000000000000000000000000000.000000000000000000000000000000000"
+"000000000000000000000000000.000000000000000000000000000.000000000000000000000000000000000"
 ```
 
 **Implementation:**
@@ -84,7 +88,7 @@ Please keep it in a safe place and do not show it to others, it may compromise t
 
 ## Secret Key
 
-This key is generated and stored on the client and is used to ensure user security. It must be sha256 hashed to
+This key is generated and stored on the client and is used to ensure user security. It must be SHA256 hashed to
 interact with the API.
 
 ## Pagination
