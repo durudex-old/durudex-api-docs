@@ -19,3 +19,35 @@
     "expiresIn": "0000-00-00T00:00:00Z"
 }
 ```
+
+## Get Session
+
+Request to get a session using id:
+
+```graphql
+query {
+  session(id: "session-id") {
+    id
+    userId
+    ip
+    expiresIn
+  }
+}
+```
+
+## Get Sessions
+
+Request to get a sessions:
+
+```graphql
+query {
+  sessions(last: 10) {
+    nodes {
+      id
+      userId
+      ip
+      expiresIn
+    }
+  }
+}
+```
