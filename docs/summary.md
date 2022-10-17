@@ -1,6 +1,7 @@
 # Table of contents
 
 * [📕 Introduction](intro.md)
+* [🌐 GraphQL](graphql.md)
 * [🗿 Test API](test.md)
 
 ## Resources
