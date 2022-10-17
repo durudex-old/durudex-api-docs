@@ -1,5 +1,31 @@
 # 📄 Post
 
+## Post Structure
+
+| Field         | Type      | Description            |
+| :-----------: | :-------: | ---------------------- |
+| `id`          | KSUID     | Post id.               |
+| `author`      | User      | Post author.           |
+| `text`        | String    | Post text.             |
+| `updatedAt`   | Timestamp | Post updated date.     |
+| `attachments` | []String  | Post attachments list. |
+
+**Example Session:**
+
+```json
+{
+  "id": "000000000000000000000000000",
+  "author": {
+    "id": "000000000000000000000000000"
+  },
+  "text": "Hello Durudex!",
+  "updatedAt": "0000-00-00T00:00:00Z",
+  "attachments": [
+    "durudex.png"
+  ]
+}
+```
+
 ## Create post
 
 You need to be authorized to create a new post. You will also need the following information:
@@ -22,7 +48,7 @@ mutation {
 }
 ```
 
-## Update post
+## Update Post
 
 You need to be authorized to update your post.
 
@@ -35,7 +61,7 @@ mutation {
 }
 ```
 
-## Get post
+## Get Post
 
 Request to get a post using id:
 
@@ -50,7 +76,7 @@ query {
 }
 ```
 
-## Get user posts
+## Get User Posts
 
 Request to get a list of user posts:
 

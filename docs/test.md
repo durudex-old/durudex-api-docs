@@ -41,7 +41,7 @@ You can now navigate to [localhost:8000](localhost:8000) to the query editor.
 
 To use, you need to add `/query` to your url and send only POST requests.
 
-## Docker container
+## Docker Container
 
 You can also use a ready-made docker container - [durudex/durudex-test-api](https://hub.docker.com/r/durudex/durudex-test-api).
 

@@ -7,3 +7,4 @@
 
 * [🙂 User](resources/user.md)
 * [📄 Post](resources/post.md)
+* [⏳ Session](resources/session.md)

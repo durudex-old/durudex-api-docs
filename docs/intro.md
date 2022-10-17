@@ -69,14 +69,14 @@ Please keep it in a safe place and do not show it to others, it may compromise t
 **Refresh token consists of:**
 
 | Part | Length   | Type   | Value          |
-| :--: | :------: | :----: |:-------------: |
+| ---- | -------- | ------ |:-------------: |
 | 1    | 27 chars | KSUID  | Session Id.    |
 | 2    | 27 chars | KSUID  | User Id.       |
 | 3    | 33 chars | String | Token payload. |
 
 > Note: Each part of the token is separated by a point.
 
-**Fake token**:
+**Example Refresh  Token**:
 
 ```json
 "000000000000000000000000000.000000000000000000000000000.000000000000000000000000000000000"

@@ -1,5 +1,25 @@
 # 🙂 User
 
+## User Structure
+
+| Field       | Type    | Description           |
+| :---------: | :-----: | --------------------- |
+| `id`        | KSUID   | User id.              |
+| `username`  | String  | Unique username.      |
+| `verified`  | Boolean | User verified status. |
+| `avatarUrl` | String  | User avatar url.      |
+
+**Example User:**
+
+```json
+{
+  "id": "000000000000000000000000000",
+  "username": "example",
+  "verified": false,
+  "avatarUrl": "000000000000000000000000000.png"
+}
+```
+
 ## Sign Up
 
 You'll need the following information to create a new user account:
@@ -44,7 +64,7 @@ mutation {
 }
 ```
 
-## Refresh token
+## Refresh Token
 
 To refresh the life of your access token, you need to perform the following request:
 
@@ -64,7 +84,7 @@ mutation {
 }
 ```
 
-## Forgot password 
+## Forgot Password 
 
 If you need to reset your user password, you will need the following information:
 
@@ -84,7 +104,7 @@ mutation {
 }
 ```
 
-## Get verification code
+## Get Verification Code
 
 If you need to get a verification code, you will need the following information:
 
@@ -99,7 +119,7 @@ mutation {
 A message with a confirmation code will be sent to the indicated email. Use this code as soon
 as possible, it doesn't last long.
 
-## Get user
+## Get User
 
 You can get all the public information about the user.
 
@@ -113,7 +133,7 @@ query {
 }
 ```
 
-## Get yourself
+## Get Yourself
 
 You can get information about yourself, this requires authorization.
 
