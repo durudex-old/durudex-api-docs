@@ -28,6 +28,7 @@ You'll need the following information to create a new user account:
 - `password` - Strong password.
 - `email` - User's email address.
 - `code` - E-mail confirmation code.
+- `secret` - Client secret key.
 
 You can learn how to get the verification code [here](#get-verification-code).
 
@@ -37,11 +38,12 @@ mutation {
     username: "example",
     email: "example@durudex.com",
     password: "qwerty",
-    code: "123456"
+    code: "123456",
+    secret: "secret-key"
   }) {
-      access
-      refresh
-    }
+    access
+    refresh
+  }
 }
 ```
 
@@ -51,16 +53,18 @@ You will need your credentials to sign in to your account:
 
 - `username` - Your account name.
 - `password` - Your account password.
+- `secret` - Client secret key.
 
 ```graphql
 mutation {
   signIn(input: {
     username: "example",
-    password: "qwerty"
+    password: "qwerty",
+    secret: "secret-key"
   }) {
-      access
-      refresh
-    }
+    access
+    refresh
+  }
 }
 ```
 
@@ -70,17 +74,10 @@ To refresh the life of your access token, you need to perform the following requ
 
 ```graphql
 mutation {
-  refreshToken(token: "you-refresh-token")
-}
-```
-
-## Sign Out
-
-In order to log out of your account, you need to `refresh` token and be authorized.
-
-```graphql
-mutation {
-  signOut(token: "you-refresh-token")
+  refreshToken(input: {
+    refresh: "refresh-token",
+    secret: "secret-key"
+  })
 }
 ```
 

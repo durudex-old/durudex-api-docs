@@ -13,10 +13,10 @@
 
 ```json
 {
-    "id": "000000000000000000000000000",
-    "userId": "000000000000000000000000000",
-    "ip": "127.0.0.1",
-    "expiresIn": "0000-00-00T00:00:00Z"
+  "id": "000000000000000000000000000",
+  "userId": "000000000000000000000000000",
+  "ip": "127.0.0.1",
+  "expiresIn": "0000-00-00T00:00:00Z"
 }
 ```
 
@@ -49,5 +49,15 @@ query {
       expiresIn
     }
   }
+}
+```
+
+## Delete Session
+
+You need to be authorized to delete your session.
+
+```graphql
+mutation {
+  deleteSession(id: "session-id")
 }
 ```

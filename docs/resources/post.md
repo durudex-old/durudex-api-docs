@@ -26,7 +26,7 @@
 }
 ```
 
-## Create post
+## Create Post
 
 You need to be authorized to create a new post. You will also need the following information:
 
@@ -38,7 +38,7 @@ mutation {
 }
 ```
 
-## Delete post
+## Delete Post
 
 You need to be authorized to delete your post.
 
