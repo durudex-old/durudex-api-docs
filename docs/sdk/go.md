@@ -13,8 +13,6 @@ go get github.com/durudex/durudex-go/sdk
 The default client type is used for simple requests where authorization is not required.
 
 ```go
-package main
-
 import "github.com/durudex/durudex-go/sdk"
 
 func main() {
@@ -43,8 +41,6 @@ This is a universal type of client that can be used in any case. It can automati
 refresh the access token.
 
 ```go
-package main
-
 import "github.com/durudex/durudex-go/sdk"
 
 func main() {
@@ -81,5 +77,41 @@ no authorization is required.
 
 **AuthTransportType**
 
-This is a universal type of client transport that is used for requests that require
-authorization, it can also be used for simple requests.
+This is a universal type of client that can be used in any case. It adds an http authorization
+header to each request. It can also automatically update the access token after the time
+specified in the configuration.
+
+## Types Package
+
+If you only need types, you can use a separate package that contains only them.
+
+```
+go get github.com/durudex/durudex-go/types
+```
+
+## Logging
+
+You can use any package for logging, this can be done by implementing the methods
+of the `sdk.Logger` interface. You then need to add this implementation to your
+client configurations.
+
+**An example of using a custom logger:**
+
+```go
+type CustomLogger struct{}
+
+func (l *CustomLogger) Debug(msg string) { ... }
+
+func (l *CustomLogger) Info(msg string) { ... }
+
+func (l *CustomLogger) Fatal(msg string) { ... }
+
+func main() {
+	client := sdk.NewClient(sdk.ClientConfig{
+		Logger: &CustomLogger{}
+		...
+	})
+
+	...
+}
+```
