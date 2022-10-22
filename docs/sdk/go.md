@@ -77,7 +77,7 @@ no authorization is required.
 
 **AuthTransportType**
 
-This is a universal type of client that can be used in any case. It adds an http authorization
+This is a universal type of client that can be used in any case. It adds an HTTP authorization
 header to each request. It can also automatically update the access token after the time
 specified in the configuration.
 
@@ -87,6 +87,43 @@ If you only need types, you can use a separate package that contains only them.
 
 ```
 go get github.com/durudex/durudex-go/types
+```
+
+## Custom Request
+
+To get the full functionality of GraphQL, you may need to create custom API queries. 
+
+**An example of creating a custom request:**
+
+```go
+import (
+	...
+
+	"github.com/durudex/durudex-go/sdk"
+	"github.com/Khan/genqlient/graphql"
+)
+
+type GetMeResponse struct {
+	Me User `json:"me"`
+}
+
+type User struct {
+	Username string `json:"username"`
+}
+
+func main() {
+	client := sdk.NewClient( ... )
+
+	req := &graphql.Request{
+		Query:  "query GetMe { me { username } }",
+		OpName: "GetMe",
+	}
+
+	var data GetMeResponse
+	resp := &graphql.Response{Data: &data}
+
+	client.MakeRequest(context.Background(), req, resp)
+}
 ```
 
 ## Logging
