@@ -16,13 +16,13 @@ The default client type is used for simple requests where authorization is not r
 import "github.com/durudex/durudex-go/sdk"
 
 func main() {
-	client := sdk.NewClient(sdk.ClientConfig{
-		Endpoint:      sdk.TestAPIEndpoint,
-		TransportType: sdk.DefaultTransportType,
-		Transport:     sdk.NewDefaultTransport(),
-	})
+  client := sdk.NewClient(sdk.ClientConfig{
+    Endpoint:      sdk.TestAPIEndpoint,
+    TransportType: sdk.DefaultTransportType,
+    Transport:     sdk.NewDefaultTransport(),
+  })
 
-	...
+  ...
 }
 ```
 
@@ -30,7 +30,7 @@ func main() {
 
 - `Endpoint` - Full url to Durudex GraphQL API. It is recommended to use prepared constants
 from the sdk package.
-- `TransportType` - A type of transport client, it is used to open certain functions, you 
+- `TransportType` - A type of transport client, it is used to open certain functions, you
 can learn more [here](#transport-type).
 - `Transport` - This is a client transport implementation, for more functionality you can
 implement your own version.
@@ -44,19 +44,19 @@ refresh the access token.
 import "github.com/durudex/durudex-go/sdk"
 
 func main() {
-	client := sdk.NewClient(sdk.ClientConfig{
-		Endpoint:      sdk.TestAPIEndpoint,
-		TransportType: sdk.AuthTransportType,
-		Transport:     sdk.NewAuthTransport(),
-		AuthConfig: &sdk.AuthConfig{
-			Refresh:    "refresh-token",
-			Secret:     "client-secret-key",
-			TokenType:  sdk.BearerTokenType,
-			RefreshTTL: time.Minute * 15,
-		},
-	})
+  client := sdk.NewClient(sdk.ClientConfig{
+    Endpoint:      sdk.TestAPIEndpoint,
+    TransportType: sdk.AuthTransportType,
+    Transport:     sdk.NewAuthTransport(),
+    AuthConfig: &sdk.AuthConfig{
+      Refresh:    "refresh-token",
+      Secret:     "client-secret-key",
+      TokenType:  sdk.BearerTokenType,
+      RefreshTTL: time.Minute * 15,
+    },
+  })
 
-	...
+  ...
 }
 ```
 
@@ -81,6 +81,31 @@ This is a universal type of client that can be used in any case. It adds an HTTP
 header to each request. It can also automatically update the access token after the time
 specified in the configuration.
 
+## Custom Transport
+
+Creating a custom transport adds new capabilities for the developer, such as custom error
+handling, protocol switching, and more. To do this, you need to implement the methods of
+the `sdk.Transport` interface.
+
+**An example of creating custom transport:**
+
+```go
+type CustomTransport struct { ... }
+
+func (*CustomTransport) RoundTrip(*http.Request) (*http.Response, error) { ... }
+
+func (*CustomTransport) SetAccessToken(string) { ... }
+
+func main() {
+  client := sdk.NewClient(sdk.ClientConfig{
+    Transport: &CustomTransport{},
+    ...
+  })
+
+  ...
+}
+```
+
 ## Types Package
 
 If you only need types, you can use a separate package that contains only them.
@@ -91,38 +116,38 @@ go get github.com/durudex/durudex-go/types
 
 ## Custom Request
 
-To get the full functionality of GraphQL, you may need to create custom API queries. 
+To get the full functionality of GraphQL, you may need to create custom API queries.
 
 **An example of creating a custom request:**
 
 ```go
 import (
-	...
+  ...
 
-	"github.com/durudex/durudex-go/sdk"
-	"github.com/Khan/genqlient/graphql"
+  "github.com/durudex/durudex-go/sdk"
+  "github.com/Khan/genqlient/graphql"
 )
 
 type GetMeResponse struct {
-	Me User `json:"me"`
+  Me User `json:"me"`
 }
 
 type User struct {
-	Username string `json:"username"`
+  Username string `json:"username"`
 }
 
 func main() {
-	client := sdk.NewClient( ... )
+  client := sdk.NewClient( ... )
 
-	req := &graphql.Request{
-		Query:  "query GetMe { me { username } }",
-		OpName: "GetMe",
-	}
+  req := &graphql.Request{
+    Query:  "query GetMe { me { username } }",
+    OpName: "GetMe",
+  }
 
-	var data GetMeResponse
-	resp := &graphql.Response{Data: &data}
+  var data GetMeResponse
+  resp := &graphql.Response{Data: &data}
 
-	client.MakeRequest(context.Background(), req, resp)
+  client.MakeRequest(context.Background(), req, resp)
 }
 ```
 
@@ -137,18 +162,18 @@ client configurations.
 ```go
 type CustomLogger struct{}
 
-func (l *CustomLogger) Debug(msg string) { ... }
+func (*CustomLogger) Debug(string) { ... }
 
-func (l *CustomLogger) Info(msg string) { ... }
+func (*CustomLogger) Info(string) { ... }
 
-func (l *CustomLogger) Fatal(msg string) { ... }
+func (*CustomLogger) Fatal(string) { ... }
 
 func main() {
-	client := sdk.NewClient(sdk.ClientConfig{
-		Logger: &CustomLogger{}
-		...
-	})
+  client := sdk.NewClient(sdk.ClientConfig{
+    Logger: &CustomLogger{}
+    ...
+  })
 
-	...
+  ...
 }
 ```
