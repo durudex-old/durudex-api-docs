@@ -5,7 +5,7 @@
 You need to use this command and have [Go 1.18](https://go.dev) or higher installed to download.
 
 ```
-go get github.com/durudex/durudex-go/sdk
+go get github.com/durudex/go-durudex/sdk
 ```
 
 ## Default Client
@@ -13,7 +13,7 @@ go get github.com/durudex/durudex-go/sdk
 The default client type is used for simple requests where authorization is not required.
 
 ```go
-import "github.com/durudex/durudex-go/sdk"
+import "github.com/durudex/go-durudex/sdk"
 
 func main() {
   client := sdk.NewClient(sdk.ClientConfig{
@@ -41,7 +41,7 @@ This is a universal type of client that can be used in any case. It can automati
 refresh the access token.
 
 ```go
-import "github.com/durudex/durudex-go/sdk"
+import "github.com/durudex/go-durudex/sdk"
 
 func main() {
   client := sdk.NewClient(sdk.ClientConfig{
@@ -111,7 +111,7 @@ func main() {
 If you only need types, you can use a separate package that contains only them.
 
 ```
-go get github.com/durudex/durudex-go/types
+go get github.com/durudex/go-durudex/types
 ```
 
 ## Custom Request
@@ -124,7 +124,7 @@ To get the full functionality of GraphQL, you may need to create custom API quer
 import (
   ...
 
-  "github.com/durudex/durudex-go/sdk"
+  "github.com/durudex/go-durudex/sdk"
   "github.com/Khan/genqlient/graphql"
 )
 
@@ -165,6 +165,8 @@ type CustomLogger struct{}
 func (*CustomLogger) Debug(string) { ... }
 
 func (*CustomLogger) Info(string) { ... }
+
+func (*CustomLogger) Error(string) { ... }
 
 func (*CustomLogger) Fatal(string) { ... }
 
