@@ -1,6 +1,7 @@
 # Table of contents
 
 * [📕 Introduction](intro.md)
+* [📕 Reference](reference.md)
 * [🌐 GraphQL](graphql.md)
 
 ## Resources
