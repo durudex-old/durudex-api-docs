@@ -1,4 +1,4 @@
-# 📕 Introduction
+# 👋 Introduction
 
 You have come across the Durudex documentation. These pages are dedicated to showing all the
 possibilities of using Durudex for cool things.
